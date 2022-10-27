@@ -1,0 +1,77 @@
+<% include ../partials/header.ejs %>
+
+<!-- MAIN CONTENT -->
+<div class="container">
+  <div class="row">
+    <div class="col-md-offset-1 col-md-10">
+      <h3>Add Car</h3>
+      
+
+      <form class="form" method="post">
+        <div class="from-group">
+          <label for="contactNameTextField">Car Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="contactNameTextField"
+            placeholder="Enter the Contact Name:"
+            name="Carname"
+            required
+          />
+        </div>
+
+        <div class="from-group">
+          <label for="contactNumberTextField">Category</label>
+          <input
+            type="text"
+            class="form-control"
+            id="contactNumberTextField"
+            placeholder="Enter Category"
+            name="Category"
+            required
+          />
+        </div>
+
+        <div class="from-group">
+          <label for="emailAddressTextField">Car Model</label>
+          <input
+            type="text"
+            class="form-control"
+            id="emailAddressTextField"
+            placeholder="Enter Car Model:"
+            name="Carmodel"
+            required
+          />
+        </div>
+
+        <div class="from-group">
+            <label for="emailAddressTextField">Price</label>
+            <input
+              type="text"
+              class="form-control"
+              id="emailAddressTextField"
+              placeholder="Enter Price:"
+              name="Price"
+              required
+            />
+          </div>
+
+
+
+
+
+        <button class="btn btn-primary" type="submit">
+          <i class="fas fa-edit"></i>Submit
+        </button>
+
+        <a href="/cars" class="btn btn-warning">
+          <i class="fas fa-undo"></i>Cancel
+        </a>
+      </form>
+
+      
+    </div>
+  </div>
+</div>
+
+<% include ../partials/footer.ejs %>
