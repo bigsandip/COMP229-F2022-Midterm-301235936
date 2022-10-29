@@ -1,77 +1,74 @@
+<!-- Author:Sandip Mishra -->
+<!-- ID:301235936 -->
+
 <% include ../partials/header.ejs %>
 
-<!-- MAIN CONTENT -->
+<!-- Content  for the add page -->
 <div class="container">
   <div class="row">
-    <div class="col-md-offset-1 col-md-10">
-      <h3>Add Car</h3>
-      
+    <div class="offset-md-3 col-md-6">
+      <h1><%=title %></h1>
 
       <form class="form" method="post">
         <div class="from-group">
-          <label for="contactNameTextField">Car Name</label>
+          <label for="nameTextField">Car Name</label>
           <input
             type="text"
             class="form-control"
-            id="contactNameTextField"
-            placeholder="Enter the Contact Name:"
-            name="Carname"
+            id="nameTextField"
+            placeholder="Enter the Car Name:"
+            name="name"
             required
           />
         </div>
 
         <div class="from-group">
-          <label for="contactNumberTextField">Category</label>
+          <label for="categoryTextField">Car Category</label>
           <input
             type="text"
             class="form-control"
-            id="contactNumberTextField"
-            placeholder="Enter Category"
-            name="Category"
+            id="categoryTextField"
+            placeholder="Enter the Car Category:"
+            name="category"
             required
           />
         </div>
 
         <div class="from-group">
-          <label for="emailAddressTextField">Car Model</label>
+          <label for="modelTextField">Car Model</label>
           <input
             type="text"
             class="form-control"
-            id="emailAddressTextField"
-            placeholder="Enter Car Model:"
-            name="Carmodel"
+            id="modelTextField"
+            placeholder="Enter the Car Model:"
+            name="model"
             required
           />
         </div>
 
         <div class="from-group">
-            <label for="emailAddressTextField">Price</label>
-            <input
-              type="text"
-              class="form-control"
-              id="emailAddressTextField"
-              placeholder="Enter Price:"
-              name="Price"
-              required
-            />
-          </div>
-
-
-
-
+          <label for="priceTextField">Price</label>
+          <input
+            type="number"
+            class="form-control"
+            id="priceTextField"
+            placeholder="Enter the Price of Car:"
+            name="price"
+            required
+          />
+        </div>
 
         <button class="btn btn-primary" type="submit">
-          <i class="fas fa-edit"></i>Submit
+          <i class="fa fa-check-square-o"></i>Submit
         </button>
 
         <a href="/cars" class="btn btn-warning">
-          <i class="fas fa-undo"></i>Cancel
+          <i class="fa fa-undo"></i>Cancel
         </a>
       </form>
-
-      
     </div>
   </div>
 </div>
+
 
 <% include ../partials/footer.ejs %>
