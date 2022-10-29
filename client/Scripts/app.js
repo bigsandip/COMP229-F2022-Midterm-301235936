@@ -1,3 +1,8 @@
+// Author :SandipMishra
+// ID:301235936
+
+
+
 /* custom JS goes here */
 
 /* pagination code from http://www.bootply.com/lxa0FF9yhw */
@@ -108,7 +113,7 @@ $.fn.pageMe = function(opts){
   $(".btn-danger").click(function(event){
     if(!confirm("Are you sure?")) {
       event.preventDefault();
-      window.location.assign("/cars");
+      window.location.assign("/games");
     }
   });
 
@@ -126,7 +131,7 @@ $.fn.pageMe = function(opts){
       let deletebuttons = document.querySelectorAll(".btn-warning");
       for (button of deletebuttons) {
         button.addEventListener("click", (event) => {
-          if (!confirm("Are you sure")) {
+          if (!confirm("Are you sure you want to delete?")) {
             event.preventDefault();
             window.location.assign("/cars");
           }
