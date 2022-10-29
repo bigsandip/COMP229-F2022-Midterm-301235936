@@ -1,3 +1,6 @@
+<!-- Author:Sandip Mishra -->
+<!-- ID:301235936 -->
+
 <% include ../partials/header.ejs %>
 
 <!-- MAIN CONTENT -->
@@ -13,8 +16,8 @@
             class="form-control"
             id="NameTextField"
             placeholder="Car Name"
-            name="Carname"
-            value="<%= Caredit.Carname %>"
+            name="name"
+            value="<%= cars.Carname %>"
             required
           />
         </div>
@@ -26,8 +29,8 @@
             class="form-control"
             id="CatTextField"
             placeholder="car Category"
-            name="Category"
-            value="<%= Caredit.Category %>"
+            name="category"
+            value="<%= cars.Category %>"
             required
           />
         </div>
@@ -39,8 +42,8 @@
             class="form-control"
             id="ModelTextField"
             placeholder="Car Model"
-            name="Carmodel"
-            value="<%= Caredit.Carmodel %>"
+            name="model"
+            value="<%= cars.Carmodel %>"
             required
           />
         </div>
@@ -52,8 +55,8 @@
             class="form-control"
             id="PriceTextField"
             placeholder="Car Price"
-            name="Price"
-            value="<%= Caredit.Price %>"
+            name="price"
+            value="<%= cars.Price %>"
             required
           />
         </div>
