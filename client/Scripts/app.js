@@ -131,7 +131,7 @@ $.fn.pageMe = function(opts){
       let deletebuttons = document.querySelectorAll(".btn-warning");
       for (button of deletebuttons) {
         button.addEventListener("click", (event) => {
-          if (!confirm("Are you sure you want to delete?")) {
+          if (!confirm("Are you sure?")) {
             event.preventDefault();
             window.location.assign("/cars");
           }
