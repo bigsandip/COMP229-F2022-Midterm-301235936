@@ -1,3 +1,7 @@
+<!-- Author:Sandip Mishra -->
+<!-- ID:301235936 -->
+
+
 <% include ../partials/header.ejs %>
 
 <!-- MAIN CONTENT -->
@@ -8,9 +12,8 @@
       <!-- ------------------------ -->
       <!-- FIX THE ADD BUTTON BELOW -->
       <!-- ------------------------ -->
-      <a href="/cars/add" class="btn btn-primary"
-        ><i class="fa fa-plus"></i> Add a car</a
-      >
+     
+      <a href="/cars/add" class="btn btn-primary"><i class="fa fa-plus"></i> Add a car</a>
       <br />
       <div class="table-responsive">
         <table class="table table-bordered table-striped table-hover">
@@ -21,34 +24,54 @@
               <th class="text-center">Category</th>
               <th class="text-center">Price</th>
               <th class="text-center"></th>
-              </tr>
+               </tr>
           </thead>
           <tbody>
             <!-- Template Row -->
-            <% for (let count = 0; count < CarList.length; count++) { %>
+            <% for (let count = 0; count < cars.length; count++) { %>
             <tr>
-              <td><%= CarList[count].Carname %></td>
+              <td><%= cars[count].Carname %></td>
 
-              <td class="text-center"><%= CarList[count].Category %></td>
-              <td class="text-center"><%= CarList[count].Carmodel %></td>
-              <td class="text-center"><%= CarList[count].Price %></td>
-
-              <td class="text-center">
-                <a href="/cars/edit/<%= CarList[count]._id %>" class="btn btn-success btn-sm">
-                  <i class="fas fa-trash"></i> Edit</a>
-              </td>
+              <td class="text-center"><%= cars[count].Category %></td>
+              <td class="text-center"><%= cars[count].Carmodel %></td>
+              <td class="text-center"><%= cars[count].Price %></td>
 
               <td class="text-center">
-                <a href="/cars/delete/<%= CarList[count]._id %>" class="btn btn-danger btn-sm">
-                  <i class="fas fa-trash"></i> Delete</a>
+                <!-- ------------------------ -->
+                <!-- ADD the EDIT BUTTON HERE -->
+                <!-- ------------------------ -->
+                <a href="/cars/edit/<%= cars[count]._id %>" class="btn btn-primary btn-sm">
+                  <i class="fas fa-pencil-alt"></i> Edit</a>
               </td>
-             
+
+              
             </tr>
+            
             <% } %>
           </tbody>
         </table>
       </div>
-    </main>
+      <!-- ------------------------ -->
+                <!--FIX the DELETE BUTTON HERE -->
+                <!-- ------------------------ -->
+      <form>
+        <div class="from-group">
+          <label for="nameTextField">Enter Name:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="namefied"
+            placeholder="Enter the Car Name to Delete:"
+            name="name"
+            required
+          />
+        </div>
+
+          <a href="" id="deleteBtn" class="btn btn-warning btn-sm" onclick="deleteCars()" >
+            <i class="fa fa-trash"></i> Delete</a>
+
+            
+      </form>
       <div class="col-md-offset-1 col-md-10 text-center">
         <ul class="pagination pagination-lg pager" id="myPager"></ul>
       </div>
@@ -56,5 +79,17 @@
     </div>
   </div>
 </div>
+<script type="text/javascript">
+function deleteCars(){
+
+  if(document.getElementById('namefied').value == ""){
+    alert("Please enter Name");
+    return false;
+  }
+  else{
+    document.getElementById("deleteBtn").href="cars/delete/"+document.getElementById('namefied').value; 
+  }
+}
+</script>
 
 <% include ../partials/footer.ejs %>
