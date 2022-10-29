@@ -1,31 +1,121 @@
+Author:sandip Mishra
+ID:301235936
+
+
+// modules required for routing
 let express = require("express");
 let router = express.Router();
 let mongoose = require("mongoose");
 
+// define the car model
+let car = require("../models/cars");
 
-let passport = require("passport");
+/* GET cars List page. READ */
+router.get("/", (req, res, next) => {
+  // find all cars in the cars collection
+  car.find((err, cars) => {
+    if (err) {
+      return console.error(err);
+    } else {
+      res.render("cars/index", {
+        title: "Cars",
+        cars: cars,
+      });
+    }
+  });
+});
 
-let carController = require("../controllers/cars");
+//  GET the Car Details page in order to add a new Car
+router.get("/add", (req, res, next) => {
+  debugger
+   res.render("cars/add", {
+    title: "Add Car Details",
+  });
+});
 
+// POST process the Car  Details page and create a new Car  - CREATE
+router.post("/add", (req, res, next) => {
+  
+  console.log("inside add method");
+  let newcar = car({
+    Carname: req.body.name,
+    Category: req.body.category,
+    Carmodel: req.body.model,
+    Price: req.body.price
+  });
+  
+  car.create(newcar, (err, car) => {
+    if (err) {
+      console.log(err);
+      res.end(err);
+    } else {
+      //refresh the cars list
+      res.redirect("/cars");
+    }
+  });
+});
 
+// GET the Car Details page in order to edit an existing Car
+router.get("/edit/:id", (req, res, next) => {
+  let id = req.params.id; //id of actual object
+  console.log("id is: "+ id);
+  car.findById(id, (err, cartoedit) => {
+    if (err) {
+      console.log(err);
+      res.end(err);
+    } else {
+      //show the edit view
+      res.render("cars/details", { title: "Edit Car details", cars: cartoedit });
+    }
+  });
+});
 
-/* GET Route for the businesscontact List page - READ Operation */
-router.get("/", carController.displayCarList);
+// POST - process the information passed from the details form and update the document
+router.post("/edit/:id", (req, res, next) => {
+  /*****************
+   * ADD CODE HERE *
+   *****************/
+   let id = req.params.id; //id of actual object
 
-// /* GET Route for displaying the Car Add page - CREATE Operation */
-router.get("/add", carController.caraddpage);
+   let updateCar = car({
+     _id: id,
+     Carname: req.body.name,
+      Category: req.body.category,
+      Carmodel: req.body.model,
+      Price: req.body.price
+   });
+   car.updateOne({ _id: id }, updateCar, (err) => {
+     if (err) {
+       console.log(err);
+       res.end(err);
+     } else {
+       //refresh the cars
+       res.redirect("/cars");
+     }
+   });
+});
 
-// /* POST Route for processing the Add page - CREATE Operation */
-router.post("/add",carController.addprocesspage);
+// GET - process the delete
+router.get("/delete/:name", (req, res, next) => {
+  /*****************
+   * ADD CODE HERE *
+   *****************/
 
-// /* GET Route for displaying the Edit page - UPDATE Operation */
-router.get("/edit/:id", carController.displayeditpage);
+   let carname = req.params.name;
+   console.log(carname)
 
-// /* POST Route for processing the Edit page - UPDATE Operation */
-router.post("/edit/:id",carController.processingeditpage);
+   car.deleteMany(
+    { Carname: { $in: carname } }, 
+    (err) => {
+     if (err) {
+       console.log(err);
+       res.end(err);
+     } else {
+       //refresh car list
+       res.redirect("/cars");
+     }
+   });
 
-// /* GET to perform  Deletion - DELETE Operation */
-
-router.get("/delete/:id", carController.deletepage);
+});
 
 module.exports = router;
